@@ -42,7 +42,7 @@ public class ParseImp {
                     }
                     workCallBack.onSuccess(gameList);
                 } else {
-                    workCallBack.onFail(500, "");
+                    workCallBack.onFail(500, "游戏列表获取错误");
                 }
             }
         });
@@ -74,7 +74,7 @@ public class ParseImp {
                     }
                     workCallBack.onSuccess(commentList);
                 } else {
-                    workCallBack.onFail(500, "");
+                    workCallBack.onFail(500, "游戏的评论列表获取错误");
                 }
             }
         });

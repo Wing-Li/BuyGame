@@ -22,13 +22,13 @@ public abstract class BaseFragment extends Fragment {
     protected View rootView;
     protected ActionBar mActionBar;
 
-    private BaseActivity holder;
+    private BaseActivity mActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof BaseActivity) {
-            holder = (BaseActivity) context;
+            mActivity = (BaseActivity) context;
         }
     }
 
@@ -48,11 +48,11 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutResource();
 
 
-    public BaseActivity getHolder() {
-        if (holder == null) {
+    public BaseActivity getmActivity() {
+        if (mActivity == null) {
             throw new IllegalArgumentException("the acticity must be extends BaseActivity");
         }
-        return holder;
+        return mActivity;
     }
 
     @Override
@@ -61,11 +61,11 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void showToast(String str) {
-        Toast.makeText(getHolder().getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getmActivity().getApplicationContext(), str, Toast.LENGTH_SHORT).show();
     }
 
     protected void showToast(int res) {
-        Toast.makeText(getHolder().getApplicationContext(), res, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getmActivity().getApplicationContext(), res, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -77,8 +77,8 @@ public abstract class BaseFragment extends Fragment {
      */
     public void skipActivity(Intent intent, boolean includeStatusBar) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Pair<View, String>[] pairs = TransitionHelper.createSafeTransitionParticipants(getHolder(), false);
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getHolder(), pairs);
+            Pair<View, String>[] pairs = TransitionHelper.createSafeTransitionParticipants(getmActivity(), false);
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getmActivity(), pairs);
             startActivity(intent, options.toBundle());
         } else {
             startActivity(intent);

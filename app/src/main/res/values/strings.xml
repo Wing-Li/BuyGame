@@ -3,4 +3,7 @@
     <string name="menu_functions">Functions</string>
     <string name="menu_card">Bank Card</string>
     <string name="menu_user">Profile</string>
+
+
+    <string name="price_text">$ %.2f</string>
 </resources>
