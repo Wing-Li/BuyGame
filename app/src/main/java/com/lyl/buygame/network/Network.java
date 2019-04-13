@@ -16,12 +16,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class Network {
 
+    // 默认超时时间
     private static final int DEFAULT_TIMEOUT = 15;
-
+    // API 地址
     private final static String URL_MY_API = BuildConfig.PARSE_SERVER_URL;
 
     private static OkHttpClient mHttpClient;
-
     private static GameApi mGameApi;
 
     static {
