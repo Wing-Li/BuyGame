@@ -11,7 +11,9 @@ class GamePresenter(view: GameContract.View) : GameContract.Presenter {
 
     var mGameView: GameContract.View = view
 
-
+    /**
+     * 初次加载数据
+     */
     override fun start() {
         mGameView.showLoading()
 
@@ -29,6 +31,12 @@ class GamePresenter(view: GameContract.View) : GameContract.Presenter {
                 mGameView.loadError(msg!!)
             }
         })
+    }
+
+    /**
+     * 加载更多数据
+     */
+    override fun loadMore(start: Int, limit: Int) {
     }
 
 }

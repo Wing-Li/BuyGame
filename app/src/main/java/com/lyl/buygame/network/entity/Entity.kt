@@ -1,5 +1,8 @@
 package com.lyl.buygame.network.entity
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * Author: lyl
  * Date Created : 2019/4/13.
@@ -8,6 +11,7 @@ package com.lyl.buygame.network.entity
 /**
  * 游戏信息
  */
+@Parcelize
 data class Game(
     var objectId: String,
     var name: String?,
@@ -16,7 +20,7 @@ data class Game(
     var gameId: Long,
     var createdAt: String,
     var updatedAt: String
-)
+) : Parcelable
 
 /**
  * 评论信息

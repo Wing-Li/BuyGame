@@ -25,22 +25,28 @@ public class ParseImp {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null && objects != null && objects.size() > 0) {
-                    List<Game> gameList = new ArrayList<>();
-                    Game game;
-                    for (ParseObject obj : objects) {
-                        String objectId = obj.getObjectId();
-                        String name = obj.getString("name");
-                        String image = obj.getString("image");
-                        long price = obj.getLong("price");
-                        long gameId = obj.getLong("gameId");
-                        String createdAt = DateUtils.formatDate(obj.getCreatedAt());
-                        String updatedAt = DateUtils.formatDate(obj.getUpdatedAt());
+                if (e == null && objects != null) {
+                    if (objects.size() > 0) {
+                        List<Game> gameList = new ArrayList<>();
+                        Game game;
+                        for (ParseObject obj : objects) {
+                            String objectId = obj.getObjectId();
+                            String name = obj.getString("name");
+                            String image = obj.getString("image");
+                            long price = obj.getLong("price");
+                            long gameId = obj.getLong("gameId");
+                            String createdAt = DateUtils.formatDate(obj.getCreatedAt());
+                            String updatedAt = DateUtils.formatDate(obj.getUpdatedAt());
 
-                        game = new Game(objectId, name, image, price, gameId, createdAt, updatedAt);
-                        gameList.add(game);
+                            game = new Game(objectId, name, image, price, gameId, createdAt, updatedAt);
+                            gameList.add(game);
+                        }
+                        workCallBack.onSuccess(gameList);
+
+                    } else {
+                        workCallBack.onFail(400, "游戏数据为空");
                     }
-                    workCallBack.onSuccess(gameList);
+
                 } else {
                     workCallBack.onFail(500, "游戏列表获取错误");
                 }
@@ -57,22 +63,28 @@ public class ParseImp {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null && objects != null && objects.size() > 0) {
-                    List<Comment> commentList = new ArrayList<>();
-                    Comment comment;
-                    for (ParseObject obj : objects) {
-                        String objectId = obj.getObjectId();
-                        String name = obj.getString("name");
-                        String avatar = obj.getString("avatar");
-                        String commentText = obj.getString("comment");
-                        long gameId = obj.getLong("gameId");
-                        String createdAt = DateUtils.formatDate(obj.getCreatedAt());
-                        String updatedAt = DateUtils.formatDate(obj.getUpdatedAt());
+                if (e == null && objects != null) {
+                    if (objects.size() > 0) {
+                        List<Comment> commentList = new ArrayList<>();
+                        Comment comment;
+                        for (ParseObject obj : objects) {
+                            String objectId = obj.getObjectId();
+                            String name = obj.getString("name");
+                            String avatar = obj.getString("avatar");
+                            String commentText = obj.getString("comment");
+                            long gameId = obj.getLong("gameId");
+                            String createdAt = DateUtils.formatDate(obj.getCreatedAt());
+                            String updatedAt = DateUtils.formatDate(obj.getUpdatedAt());
 
-                        comment = new Comment(objectId, name, avatar, commentText, gameId, createdAt, updatedAt);
-                        commentList.add(comment);
+                            comment = new Comment(objectId, name, avatar, commentText, gameId, createdAt, updatedAt);
+                            commentList.add(comment);
+                        }
+                        workCallBack.onSuccess(commentList);
+
+                    } else {
+                        workCallBack.onFail(400, "评论数据为空");
                     }
-                    workCallBack.onSuccess(commentList);
+
                 } else {
                     workCallBack.onFail(500, "游戏的评论列表获取错误");
                 }

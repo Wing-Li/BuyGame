@@ -1,10 +1,13 @@
 package com.lyl.buygame.ui.game
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lyl.buygame.R
 import com.lyl.buygame.network.entity.Game
 import com.lyl.buygame.ui.base.BaseFragment
+import com.lyl.buygame.ui.base.OnItemClickListener
+import com.lyl.buygame.ui.game.detail.GameDetailActivity
 import kotlinx.android.synthetic.main.fragment_game.*
 
 /**
@@ -13,8 +16,8 @@ import kotlinx.android.synthetic.main.fragment_game.*
  */
 class GameFragment : BaseFragment(), GameContract.View {
 
-    lateinit var mGameAdapter: GameListAdapter
-    var mGamePresenter: GamePresenter = GamePresenter(this)
+    private lateinit var mGameAdapter: GameListAdapter
+    private var mGamePresenter: GamePresenter = GamePresenter(this)
 
     override fun getLayoutResource(): Int {
         return R.layout.fragment_game
@@ -46,6 +49,18 @@ class GameFragment : BaseFragment(), GameContract.View {
             mGameAdapter.clearData()
             mGamePresenter.start()
         }
+
+        // 列表的点击事件
+        mGameAdapter.setOnItemClickListener(
+            listener = OnItemClickListener { view, pos ->
+                run {
+                    val game = mGameAdapter.getDatas().get(pos)
+
+                    val intent = Intent(getmActivity(), GameDetailActivity::class.java)
+                    intent.putExtra(GameDetailActivity.Intent.GAME, game)
+                    skipActivity(intent, true)
+                }
+            })
     }
 
     /**

@@ -6,4 +6,5 @@
 
 
     <string name="price_text">$ %.2f</string>
+    <string name="game_detail_comment_title">Comments</string>
 </resources>

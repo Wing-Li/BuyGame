@@ -1,6 +1,7 @@
 package com.lyl.buygame.ui.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -22,6 +23,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected Activity mActivity;
     protected Context mContext;
+    protected ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -75,6 +77,26 @@ public class BaseActivity extends AppCompatActivity {
     protected void translucentStatusAndNavigation() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+    }
+
+    /**
+     * 显示加载圈
+     */
+    protected void showLoadingDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(mContext);
+            mProgressDialog.setMessage("Loading...");
+        }
+        mProgressDialog.show();
+    }
+
+    /**
+     * 隐藏加载圈
+     */
+    protected void hideLoadingDialog(){
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.cancel();
+        }
     }
 
     /**

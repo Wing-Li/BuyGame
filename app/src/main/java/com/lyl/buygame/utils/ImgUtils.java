@@ -26,7 +26,13 @@ public class ImgUtils {
     private static RequestOptions baseOptions = new RequestOptions()//
             .placeholder(placeholderRes)//
             .error(errorRes)//
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
+
+    private static RequestOptions cacheOptions = new RequestOptions()//
+            .placeholder(placeholderRes)//
+            .error(errorRes)//
+            .skipMemoryCache(false)//
+            .diskCacheStrategy(DiskCacheStrategy.ALL);
 
 //    DiskCacheStrategy.NONE 什么都不缓存
 //    DiskCacheStrategy.DATA 仅仅只缓存原来的全分辨率的图像。
@@ -74,6 +80,10 @@ public class ImgUtils {
      */
     public static void loadCircle(Context context, Uri uri, ImageView imageView) {
         Glide.with(context).load(uri).apply(baseOptions).apply(RequestOptions.circleCropTransform()).into(imageView);
+    }
+
+    public static void loadCache(Context context, String url, ImageView imageView) {
+        Glide.with(context).load(url).apply(cacheOptions).into(imageView);
     }
 
     /**
