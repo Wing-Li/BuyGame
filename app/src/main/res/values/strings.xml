@@ -1,10 +1,13 @@
 <resources>
+
     <string name="menu_games">Games</string>
     <string name="menu_functions">Functions</string>
     <string name="menu_card">Bank Card</string>
     <string name="menu_user">Profile</string>
 
-
-    <string name="price_text">$ %.2f</string>
+    <string name="game_price_text">$ %.2f</string>
     <string name="game_detail_comment_title">Comments</string>
+
+    <string name="main_vpn_prompt">温馨提示：此 APP 需要连 Vpn 才可显示数据</string>
+    <string name="main_know">知道了</string>
 </resources>

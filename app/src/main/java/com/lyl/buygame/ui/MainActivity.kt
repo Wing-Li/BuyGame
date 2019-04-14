@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.lyl.buygame.R
 import com.lyl.buygame.ui.base.BaseActivity
 import com.lyl.buygame.ui.card.CardFragment
@@ -40,12 +41,16 @@ class MainActivity : BaseActivity() {
         mainBottomBar.enableShiftingMode(false)
         mainBottomBar.enableItemShiftingMode(false)
         mainBottomBar.setTextVisibility(true)
+
+        // 提示 使用 Vpn
+        Snackbar.make(mainBottomBar, getString(R.string.main_vpn_prompt), Snackbar.LENGTH_LONG)
+            .setAction(getString(R.string.main_know)) { }.show()
     }
 
     /**
      * 设置主页面的布局
      */
-    private fun initMainFragment(){
+    private fun initMainFragment() {
         gameFragment = GameFragment()
         supportFragmentManager.beginTransaction().add(R.id.contentFrameLayout, gameFragment!!).commit()
         oldFragment = gameFragment

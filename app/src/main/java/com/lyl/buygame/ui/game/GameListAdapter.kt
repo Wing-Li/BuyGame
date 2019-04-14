@@ -55,7 +55,7 @@ class GameListAdapter(context: Context) : RecyclerView.Adapter<GameListAdapter.V
 
         ImgUtils.loadCache(mContext, game.image, holder.game_image)
         holder.game_title.text = game.name
-        holder.game_price.text = mContext.resources.getString(R.string.price_text, game.price / 100F)
+        holder.game_price.text = mContext.resources.getString(R.string.game_price_text, game.price / 100F)
 
         // 如果有监听点击事件，再设置
         if (mOnItemClickListener != null) {
