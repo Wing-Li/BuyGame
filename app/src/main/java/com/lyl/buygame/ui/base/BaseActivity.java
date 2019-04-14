@@ -3,16 +3,11 @@ package com.lyl.buygame.ui.base;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
-import com.lyl.buygame.view.TransitionHelper;
 
 /**
  * Author: lyl
@@ -42,22 +37,6 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void showToast(int res) {
         Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * 跳转页面
-     *
-     * @param intent
-     * @param includeStatusBar 如果是false，状态栏将不会被添加为过渡参与者
-     */
-    public void skipActivity(Intent intent, boolean includeStatusBar) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Pair<View, String>[] pairs = TransitionHelper.createSafeTransitionParticipants(this, false);
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, pairs);
-            startActivity(intent, options.toBundle());
-        } else {
-            startActivity(intent);
-        }
     }
 
     @Override

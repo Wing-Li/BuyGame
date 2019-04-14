@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-
     private var gameFragment: GameFragment? = null
     private var funcFragment: FuncFragment? = null
     private var cardFragment: CardFragment? = null
@@ -26,7 +25,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.lyl.buygame.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         initView()
         initMainFragment()
@@ -63,8 +62,7 @@ class MainActivity : BaseActivity() {
         mainBottomBar.onNavigationItemSelectedListener =
             object : BottomNavigationView.OnNavigationItemSelectedListener {
                 override fun onNavigationItemSelected(item: MenuItem): Boolean {
-                    val itemId = item.getItemId()
-                    when (itemId) {
+                    when (item.itemId) {
 
                         // 游戏按钮
                         R.id.menu_game -> {
@@ -125,6 +123,4 @@ class MainActivity : BaseActivity() {
         }
         oldFragment = to
     }
-
-
 }
