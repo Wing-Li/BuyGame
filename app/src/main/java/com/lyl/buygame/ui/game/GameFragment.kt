@@ -1,7 +1,10 @@
 package com.lyl.buygame.ui.game
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.util.Pair
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lyl.buygame.R
 import com.lyl.buygame.network.entity.Game
@@ -58,7 +61,14 @@ class GameFragment : BaseFragment(), GameContract.View {
 
                     val intent = Intent(getmActivity(), GameDetailActivity::class.java)
                     intent.putExtra(GameDetailActivity.Intent.GAME, game)
-                    skipActivity(intent, true)
+
+                    // 共享元素
+                    val imageView = view.findViewById(R.id.item_game_image) as ImageView
+                    val options = ActivityOptions.makeSceneTransitionAnimation(
+                        activity,
+                        Pair.create(imageView, "image")
+                    )
+                    startActivity(intent, options.toBundle())
                 }
             })
     }

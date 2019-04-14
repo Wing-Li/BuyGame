@@ -33,6 +33,7 @@ class GameDetailActivity : BaseActivity(), GameDetailContract.View {
 
         initData()
         initView()
+        initListener()
 
         mGameDetailPresenter.initData(mGame.gameId)
     }
@@ -55,6 +56,10 @@ class GameDetailActivity : BaseActivity(), GameDetailContract.View {
         gameDetailListView.layoutManager = LinearLayoutManager(mContext)
         gameDetailListView.addItemDecoration(DividerItemDecoration(mContext, LinearLayout.VERTICAL))
         gameDetailListView.adapter = mGameDetailCommentAdapter
+    }
+
+    private fun initListener() {
+        gameDetailToolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun showLoading() {

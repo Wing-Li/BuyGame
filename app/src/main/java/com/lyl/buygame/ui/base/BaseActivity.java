@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -26,7 +25,7 @@ public class BaseActivity extends AppCompatActivity {
     protected ProgressDialog mProgressDialog;
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
         mActivity = this;
@@ -64,11 +63,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            finishAfterTransition();
-        } else {
-            finish();
-        }
+        finishAfterTransition();
     }
 
     /**
@@ -93,7 +88,7 @@ public class BaseActivity extends AppCompatActivity {
     /**
      * 隐藏加载圈
      */
-    protected void hideLoadingDialog(){
+    protected void hideLoadingDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.cancel();
         }
