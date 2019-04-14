@@ -55,12 +55,25 @@ android {
         experimental = true
     }
 
+    apply from: 'signingConfigs.gradle', to: android
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "BugGame_${variant.productFlavors[0].name}_v${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+            }
         }
     }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {

@@ -1,0 +1,8 @@
+signingConfigs {
+    release {
+        storeFile file('./../lyl.jks')
+        storePassword "123456"
+        keyAlias "game"
+        keyPassword "123456"
+    }
+}
